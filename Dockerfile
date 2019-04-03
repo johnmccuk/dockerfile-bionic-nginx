@@ -11,6 +11,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt update -y && DEBIAN_FRONTEND=noninteracti
     supervisor php-fpm php7.2-mbstring php7.2-mysql composer rsyslog && apt clean && service php7.2-fpm start && usermod -u 1000 www-data
 
 COPY ./conf/nginx.conf /etc/nginx/sites-enabled/default
+COPY ./conf/php-custom.ini /etc/php/7.2/fpm/conf.d/99-custom.ini
+COPY ./conf/php-fpm-pool.conf /etc/php/7.2/fpm/pool.d/www.conf
 COPY ./webroot /var/www/html
 
 EXPOSE 443 80
