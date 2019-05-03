@@ -9,5 +9,4 @@ docker file for Ubuntu Bionic Beaver with the following installed
 * node
 * npm
 
-
 defaults to phpinfo page @ index.php
