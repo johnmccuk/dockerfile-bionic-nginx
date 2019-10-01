@@ -7,8 +7,8 @@ FROM ubuntu:18.04
 MAINTAINER John McCracken <john.mccracken@qanw.co.uk>
 
 # Install Packages
-RUN DEBIAN_FRONTEND=noninteractive apt update -y && DEBIAN_FRONTEND=noninteractive apt install -y vim nginx nodejs npm \
-    supervisor php7.3-fpm php7.3-mbstring php7.3-zip php-xdebug php-memcached php-imagick libssh2-1 libssl1.0.0 php-curl php-ssh2 php7.3-mysql php-dom php-dom composer rsyslog zip unzip && apt clean && service php7.3-fpm start && usermod -u 1000 www-data
+RUN DEBIAN_FRONTEND=noninteractive apt update -y && apt-get install software-properties-common -y && add-apt-repository ppa:ondrej/php -y && apt update -y && DEBIAN_FRONTEND=noninteractive apt install -y vim nginx nodejs npm \
+    supervisor php7.3-fpm php7.3-mbstring php7.3-zip php-xdebug php-memcached php-imagick libssh2-1 libssl1.0.0 php-curl php-ssh2 php7.3-mysql php7.3-xml composer rsyslog zip unzip && apt clean && service php7.3-fpm start && usermod -u 1000 www-data
 
 COPY ./conf/nginx.conf /etc/nginx/sites-enabled/default
 COPY ./conf/php-custom.ini /etc/php/7.3/fpm/conf.d/99-custom.ini
